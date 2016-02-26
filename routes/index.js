@@ -5,11 +5,11 @@ module.exports = app => {
 };
 
 module.exports = app => {
-  const Styles = app.models.styles;
+  const Styles = app.db.models.styles;
 
   app.get("/styles", (req, res) => {
-    Styles.findAll({}, (styles) => {
+    Styles.findAll({}).then(styles => {
       res.json({styles: styles});
     });
   });
-}
+};
