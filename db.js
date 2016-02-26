@@ -19,8 +19,18 @@ module.exports = app => {
       models: {}
     };
     const styleModel = path.join(__dirname, "models/styles.js");
-    const model = sequelize.import(styleModel);
+    const beerModel = path.join(__dirname, "models/beers.js");
+    const breweryModel = path.join(__dirname, "models/breweries.js");
+
+    let model = sequelize.import(styleModel);
     db.models[model.name] = model;
+
+    model = sequelize.import(beerModel);
+    db.models[model.name] = model;
+
+    model = sequelize.import(breweryModel);
+    db.models[model.name] = model;
+
   }
   return db;
 };

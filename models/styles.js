@@ -12,6 +12,12 @@ module.exports = (sequelize, DataType) => {
         notEmpty: true
       }
     }
+  },
+  {
+    classMethods: {
+      associate: (models) => {
+      }
+    }
   });
 
   return Styles;
