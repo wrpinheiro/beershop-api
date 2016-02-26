@@ -5,7 +5,7 @@ module.exports = app => {
 };
 
 module.exports = app => {
-  const Styles = app.db.models.styles;
+  const Styles = app.db.models.Styles;
 
   app.get("/styles", (req, res) => {
     Styles.findAll({}).then(styles => {
