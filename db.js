@@ -18,19 +18,17 @@ module.exports = app => {
       Sequelize,
       models: {}
     };
-    const styleModel = path.join(__dirname, "models/styles.js");
-    const beerModel = path.join(__dirname, "models/beers.js");
-    const breweryModel = path.join(__dirname, "models/breweries.js");
 
-    let model = sequelize.import(styleModel);
-    db.models[model.name] = model;
+    const dir = path.join(__dirname, "models");
+    fs.readdirSync(dir).forEach(file => {
+      const modelDir = path.join(dir, file);
+      const model = sequelize.import(modelDir);
+      db.models[model.name] = model;
+    });
 
-    model = sequelize.import(beerModel);
-    db.models[model.name] = model;
-
-    model = sequelize.import(breweryModel);
-    db.models[model.name] = model;
-
+    Object.keys(db.models).forEach(key => {
+      db.models[key].associate(db.models);
+    });
   }
   return db;
 };
