@@ -1,10 +1,4 @@
 module.exports = app => {
-  app.get("/", (req, res) => {
-    res.json({status: "Beershop API"})
-  });
-};
-
-module.exports = app => {
   const Styles = app.db.models.Styles;
 
   app.get("/styles", (req, res) => {
